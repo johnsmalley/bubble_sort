@@ -26,8 +26,29 @@ def bubble_sort(array)
 		end	
 	end
 
-	return array
+	p array
 
 end
 
-p bubble_sort(sample_array)
+bubble_sort(sample_array)
+
+def bubble_sort_by(array)
+	switch = true
+
+	while switch do # keep going through the array until no more switches needed
+		switch = false
+		# p yield(array[0],array[1])
+		(array.length - 1).times do |i|
+			if (yield(array[i],array[i+1])) > 0
+				array[i+1],array[i] = array[i],array[i+1]
+				switch = true
+			end
+		end
+	end
+
+	p array
+end
+
+bubble_sort_by(["hi","hello","hey"]) do |left,right|
+	left.length - right.length
+end
